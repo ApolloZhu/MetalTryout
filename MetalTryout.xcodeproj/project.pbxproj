@@ -11,6 +11,10 @@
 		52AC4BD71EB2752000AD7DCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC4BD61EB2752000AD7DCF /* ViewController.swift */; };
 		52AC4BD91EB2752000AD7DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AC4BD81EB2752000AD7DCF /* Assets.xcassets */; };
 		52AC4BDC1EB2752100AD7DCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52AC4BDA1EB2752100AD7DCF /* Main.storyboard */; };
+		52AC4BEA1EB27A7400AD7DCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC4BE91EB27A7400AD7DCF /* AppDelegate.swift */; };
+		52AC4BEE1EB27A7400AD7DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AC4BED1EB27A7400AD7DCF /* Assets.xcassets */; };
+		52AC4BF11EB27A7400AD7DCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52AC4BEF1EB27A7400AD7DCF /* Main.storyboard */; };
+		52AC4BF71EB27AA500AD7DCF /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC4BF61EB27AA500AD7DCF /* MetalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +24,23 @@
 		52AC4BD81EB2752000AD7DCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52AC4BDB1EB2752100AD7DCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52AC4BDD1EB2752100AD7DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52AC4BE71EB27A7400AD7DCF /* Part1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Part1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52AC4BE91EB27A7400AD7DCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		52AC4BED1EB27A7400AD7DCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		52AC4BF01EB27A7400AD7DCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		52AC4BF21EB27A7400AD7DCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52AC4BF61EB27AA500AD7DCF /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		52AC4BCE1EB2752000AD7DCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52AC4BE41EB27A7400AD7DCF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -37,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				52AC4BD31EB2752000AD7DCF /* MetalTryout */,
+				52AC4BE81EB27A7400AD7DCF /* Part1 */,
 				52AC4BD21EB2752000AD7DCF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -45,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				52AC4BD11EB2752000AD7DCF /* MetalTryout.app */,
+				52AC4BE71EB27A7400AD7DCF /* Part1.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -59,6 +78,18 @@
 				52AC4BDD1EB2752100AD7DCF /* Info.plist */,
 			);
 			path = MetalTryout;
+			sourceTree = "<group>";
+		};
+		52AC4BE81EB27A7400AD7DCF /* Part1 */ = {
+			isa = PBXGroup;
+			children = (
+				52AC4BE91EB27A7400AD7DCF /* AppDelegate.swift */,
+				52AC4BF61EB27AA500AD7DCF /* MetalView.swift */,
+				52AC4BED1EB27A7400AD7DCF /* Assets.xcassets */,
+				52AC4BEF1EB27A7400AD7DCF /* Main.storyboard */,
+				52AC4BF21EB27A7400AD7DCF /* Info.plist */,
+			);
+			path = Part1;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -81,6 +112,23 @@
 			productReference = 52AC4BD11EB2752000AD7DCF /* MetalTryout.app */;
 			productType = "com.apple.product-type.application";
 		};
+		52AC4BE61EB27A7400AD7DCF /* Part1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52AC4BF51EB27A7400AD7DCF /* Build configuration list for PBXNativeTarget "Part1" */;
+			buildPhases = (
+				52AC4BE31EB27A7400AD7DCF /* Sources */,
+				52AC4BE41EB27A7400AD7DCF /* Frameworks */,
+				52AC4BE51EB27A7400AD7DCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Part1;
+			productName = Part1;
+			productReference = 52AC4BE71EB27A7400AD7DCF /* Part1.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -92,6 +140,10 @@
 				ORGANIZATIONNAME = WWITDC;
 				TargetAttributes = {
 					52AC4BD01EB2752000AD7DCF = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					52AC4BE61EB27A7400AD7DCF = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -111,6 +163,7 @@
 			projectRoot = "";
 			targets = (
 				52AC4BD01EB2752000AD7DCF /* MetalTryout */,
+				52AC4BE61EB27A7400AD7DCF /* Part1 */,
 			);
 		};
 /* End PBXProject section */
@@ -122,6 +175,15 @@
 			files = (
 				52AC4BD91EB2752000AD7DCF /* Assets.xcassets in Resources */,
 				52AC4BDC1EB2752100AD7DCF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52AC4BE51EB27A7400AD7DCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52AC4BEE1EB27A7400AD7DCF /* Assets.xcassets in Resources */,
+				52AC4BF11EB27A7400AD7DCF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +199,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52AC4BE31EB27A7400AD7DCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52AC4BF71EB27AA500AD7DCF /* MetalView.swift in Sources */,
+				52AC4BEA1EB27A7400AD7DCF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -144,6 +215,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				52AC4BDB1EB2752100AD7DCF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		52AC4BEF1EB27A7400AD7DCF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52AC4BF01EB27A7400AD7DCF /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -269,6 +348,32 @@
 			};
 			name = Release;
 		};
+		52AC4BF31EB27A7400AD7DCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Part1/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wwitdc.apollozhu.Part1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		52AC4BF41EB27A7400AD7DCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Part1/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wwitdc.apollozhu.Part1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -286,6 +391,15 @@
 			buildConfigurations = (
 				52AC4BE11EB2752100AD7DCF /* Debug */,
 				52AC4BE21EB2752100AD7DCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52AC4BF51EB27A7400AD7DCF /* Build configuration list for PBXNativeTarget "Part1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52AC4BF31EB27A7400AD7DCF /* Debug */,
+				52AC4BF41EB27A7400AD7DCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

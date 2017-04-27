@@ -6,6 +6,8 @@
 //  Copyright © 2017 WWITDC. All rights reserved.
 //
 
+//  Tutorial: http://metalkit.org/2016/01/04/introducing-the-metal-framework.html
+
 import Cocoa
 
 class ViewController: NSViewController {
@@ -15,13 +17,16 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // macOS only. Normally use `MTLCreateSystemDefaultDevice()`
         let devices = MTLCopyAllDevices()
-        guard devices.count > 0 else {
-            fatalError("Your GPU does not support Metal!")
+        if devices.isEmpty {
+            label.stringValue = "Your GPU does not support Metal!"
+        } else {
+            label.stringValue = devices
+                .reduce("Your system has the following GPU\(devices.count>1 ? "s" : ""):\n")
+                { $0 + "\($1.name!)\n" }
         }
-        label.stringValue =
-        devices.reduce("Your system has the following GPU\(devices.count>1 ? "s" : ""):\n") { $0 + "\($1.name!)\n" }
     }
-
+    
 }
 
