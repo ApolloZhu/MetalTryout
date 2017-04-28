@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522BBF0F1EB2AA360038012B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52AC4BEF1EB27A7400AD7DCF /* Main.storyboard */; };
+		522BBF111EB2AA490038012B /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BBF101EB2AA490038012B /* MetalView.swift */; };
+		52A82F1F1EB37CEF002C4F52 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 52A82F1E1EB37CEF002C4F52 /* Shaders.metal */; };
+		52A82F211EB38B12002C4F52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52A82F201EB38B12002C4F52 /* Assets.xcassets */; };
+		52A82F231EB38B36002C4F52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A82F221EB38B36002C4F52 /* AppDelegate.swift */; };
 		52AC4BD51EB2752000AD7DCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC4BD41EB2752000AD7DCF /* AppDelegate.swift */; };
 		52AC4BD71EB2752000AD7DCF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC4BD61EB2752000AD7DCF /* ViewController.swift */; };
 		52AC4BD91EB2752000AD7DCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52AC4BD81EB2752000AD7DCF /* Assets.xcassets */; };
@@ -18,6 +23,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		522BBF001EB2AA080038012B /* Part2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Part2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		522BBF0B1EB2AA080038012B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		522BBF101EB2AA490038012B /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		52A82F1E1EB37CEF002C4F52 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		52A82F201EB38B12002C4F52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Part1/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		52A82F221EB38B36002C4F52 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Part1/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		52AC4BD11EB2752000AD7DCF /* MetalTryout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalTryout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52AC4BD41EB2752000AD7DCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52AC4BD61EB2752000AD7DCF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,6 +44,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		522BBEFD1EB2AA080038012B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52AC4BCE1EB2752000AD7DCF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,11 +68,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		522BBF011EB2AA080038012B /* Part2 */ = {
+			isa = PBXGroup;
+			children = (
+				52A82F221EB38B36002C4F52 /* AppDelegate.swift */,
+				522BBF101EB2AA490038012B /* MetalView.swift */,
+				52A82F201EB38B12002C4F52 /* Assets.xcassets */,
+				522BBF0B1EB2AA080038012B /* Info.plist */,
+				52A82F1E1EB37CEF002C4F52 /* Shaders.metal */,
+			);
+			path = Part2;
+			sourceTree = "<group>";
+		};
 		52AC4BC81EB2752000AD7DCF = {
 			isa = PBXGroup;
 			children = (
 				52AC4BD31EB2752000AD7DCF /* MetalTryout */,
 				52AC4BE81EB27A7400AD7DCF /* Part1 */,
+				522BBF011EB2AA080038012B /* Part2 */,
 				52AC4BD21EB2752000AD7DCF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,6 +95,7 @@
 			children = (
 				52AC4BD11EB2752000AD7DCF /* MetalTryout.app */,
 				52AC4BE71EB27A7400AD7DCF /* Part1.app */,
+				522BBF001EB2AA080038012B /* Part2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +127,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		522BBEFF1EB2AA080038012B /* Part2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522BBF0E1EB2AA080038012B /* Build configuration list for PBXNativeTarget "Part2" */;
+			buildPhases = (
+				522BBEFC1EB2AA080038012B /* Sources */,
+				522BBEFD1EB2AA080038012B /* Frameworks */,
+				522BBEFE1EB2AA080038012B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Part2;
+			productName = Part2;
+			productReference = 522BBF001EB2AA080038012B /* Part2.app */;
+			productType = "com.apple.product-type.application";
+		};
 		52AC4BD01EB2752000AD7DCF /* MetalTryout */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52AC4BE01EB2752100AD7DCF /* Build configuration list for PBXNativeTarget "MetalTryout" */;
@@ -139,6 +188,10 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = WWITDC;
 				TargetAttributes = {
+					522BBEFF1EB2AA080038012B = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
 					52AC4BD01EB2752000AD7DCF = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
@@ -164,11 +217,21 @@
 			targets = (
 				52AC4BD01EB2752000AD7DCF /* MetalTryout */,
 				52AC4BE61EB27A7400AD7DCF /* Part1 */,
+				522BBEFF1EB2AA080038012B /* Part2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		522BBEFE1EB2AA080038012B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52A82F211EB38B12002C4F52 /* Assets.xcassets in Resources */,
+				522BBF0F1EB2AA360038012B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52AC4BCF1EB2752000AD7DCF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,6 +253,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		522BBEFC1EB2AA080038012B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52A82F231EB38B36002C4F52 /* AppDelegate.swift in Sources */,
+				52A82F1F1EB37CEF002C4F52 /* Shaders.metal in Sources */,
+				522BBF111EB2AA490038012B /* MetalView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52AC4BCD1EB2752000AD7DCF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +303,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		522BBF0C1EB2AA080038012B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Part2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wwitdc.apollozhu.Part2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		522BBF0D1EB2AA080038012B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Part2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wwitdc.apollozhu.Part2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		52AC4BDE1EB2752100AD7DCF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -377,6 +476,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		522BBF0E1EB2AA080038012B /* Build configuration list for PBXNativeTarget "Part2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522BBF0C1EB2AA080038012B /* Debug */,
+				522BBF0D1EB2AA080038012B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		52AC4BCC1EB2752000AD7DCF /* Build configuration list for PBXProject "MetalTryout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -402,6 +510,7 @@
 				52AC4BF41EB27A7400AD7DCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
