@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Part1
+//  MetalTryout
 //
 //  Created by Apollo Zhu on 4/27/17.
 //  Copyright © 2017 WWITDC. All rights reserved.

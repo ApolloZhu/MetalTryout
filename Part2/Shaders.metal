@@ -13,10 +13,12 @@ struct Vertex {
     float4 position [[position]];
 };
 
+// vertex shader determines location of the points
 vertex Vertex vertex_function(constant Vertex *vertices [[buffer(0)]], uint vid [[vertex_id]]) {
     return vertices[vid];
 }
 
+// fragment shader colors the points
 fragment float4 fragment_function(Vertex vert [[stage_in]]) {
     return float4(0.7, 1, 1, 1);
 }

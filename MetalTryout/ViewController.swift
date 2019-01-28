@@ -11,7 +11,6 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
     @IBOutlet weak var label: NSTextField!
 
     override func viewDidLoad() {
@@ -23,10 +22,8 @@ class ViewController: NSViewController {
             label.stringValue = "Your GPU does not support Metal!"
         } else {
             label.stringValue = devices
-                .reduce("Your system has the following GPU\(devices.count>1 ? "s" : ""):\n")
-                { $0 + "\($1.name!)\n" }
+                .reduce("Current system has the following GPU\(devices.count > 1 ? "s" : ""):\n")
+                { $0 + "\($1.name)\n" }
         }
     }
-    
 }
-

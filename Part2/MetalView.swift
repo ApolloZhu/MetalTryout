@@ -17,14 +17,13 @@ extension MTLClearColor {
 }
 
 class MetalView: MTKView {
-
     required init(coder: NSCoder) {
         super.init(coder: coder)
         device = MTLCreateSystemDefaultDevice()
     }
-
-    lazy var cmdQueue: MTLCommandQueue = self.device!.makeCommandQueue()
-
+    
+    lazy var cmdQueue: MTLCommandQueue = self.device!.makeCommandQueue()!
+    
     /// Buffer of vertices for shaders.
     lazy var vertexBuffer: MTLBuffer = {
         // float4: 3 floats representing (x,y,z), and the other is 
@@ -35,13 +34,13 @@ class MetalView: MTKView {
                 1.0, -1.0, 0.0, 1.0, // bottom right
                 0.0,  1.0, 0.0, 1.0] // top center
         let length = vertexData.count * MemoryLayout<Float>.size
-        return self.device!.makeBuffer(bytes: vertexData, length: length)
+        return self.device!.makeBuffer(bytes: vertexData, length: length)!
     }()
-
+    
     /// Instructions for the rendering pipeline.
     lazy var renderPipelineState: MTLRenderPipelineState = {
         // Contents of the `.metal` files within the project.
-        let library = self.device!.newDefaultLibrary()!
+        let library = self.device!.makeDefaultLibrary()!
         // Information describing the entire rendering process.
         let descriptor = MTLRenderPipelineDescriptor()
         // Load function in shader file for calculating location of vertices
@@ -52,28 +51,27 @@ class MetalView: MTKView {
         descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         return try! self.device!.makeRenderPipelineState(descriptor: descriptor)
     }()
-
-
+    
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
-        if let drawable = currentDrawable,
-            let descriptor = currentRenderPassDescriptor {
-            // We are not just clearing everytime, so keep with default
-            descriptor.colorAttachments[0].clearColor = .bleen
-            let cmdBuffer = cmdQueue.makeCommandBuffer()
-            let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: descriptor)
-
-            // Configure vertex buffer and render pipeline state
-            encoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
-            encoder.setRenderPipelineState(renderPipelineState)
-            // Draw the triangle.
-            encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
-
-            encoder.endEncoding()
-            cmdBuffer.present(drawable)
-            cmdBuffer.commit()
-        }
+        
+        guard let drawable = currentDrawable
+            , let descriptor = currentRenderPassDescriptor
+            else { return }
+        // We are not just clearing everytime, so keep with default
+        descriptor.colorAttachments[0].clearColor = .bleen
+        let cmdBuffer = cmdQueue.makeCommandBuffer()!
+        let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: descriptor)!
+        
+        // Configure vertex buffer and render pipeline state
+        encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        encoder.setRenderPipelineState(renderPipelineState)
+        // Draw the triangle.
+        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
+        
+        encoder.endEncoding()
+        cmdBuffer.present(drawable)
+        cmdBuffer.commit()
     }
-    
 }

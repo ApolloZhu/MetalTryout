@@ -11,9 +11,7 @@
 import Cocoa
 import MetalKit
 
-extension MTLClearColor {
-    static let gray = MTLClearColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-}
+// MARK: - Create Buffer
 
 /// Each vertex
 struct Vertex {
@@ -24,14 +22,6 @@ struct Vertex {
 }
 
 class MetalView: MTKView {
-
-    required init(coder: NSCoder) {
-        super.init(coder: coder)
-        device = MTLCreateSystemDefaultDevice()
-    }
-
-    lazy var cmdQueue: MTLCommandQueue = self.device!.makeCommandQueue()
-
     /// Buffer of vertices for shaders.
     lazy var vertexBuffer: MTLBuffer = {
         let vertexData: [Vertex] = [
@@ -45,7 +35,9 @@ class MetalView: MTKView {
         let length = vertexData.count * MemoryLayout<Vertex>.size
         return self.device!.makeBuffer(bytes: vertexData, length: length)
     }()
-
+    
+    // MARK: - Register Shaders
+    
     /// Instructions for the rendering pipeline.
     lazy var renderPipelineState: MTLRenderPipelineState = {
         let library = self.device!.newDefaultLibrary()!
@@ -55,26 +47,37 @@ class MetalView: MTKView {
         descriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         return try! self.device!.makeRenderPipelineState(descriptor: descriptor)
     }()
-
-
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        if let drawable = currentDrawable,
-            let descriptor = currentRenderPassDescriptor {
-            // We are not just clearing everytime, so keep with default
-            descriptor.colorAttachments[0].clearColor = .gray
-            let cmdBuffer = cmdQueue.makeCommandBuffer()
-            let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: descriptor)
-
-            encoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
-            encoder.setRenderPipelineState(renderPipelineState)
-            encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
-
-            encoder.endEncoding()
-            cmdBuffer.present(drawable)
-            cmdBuffer.commit()
-        }
+    
+    // MARK: - Send to GPU
+    
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        device = MTLCreateSystemDefaultDevice()
     }
     
+    lazy var cmdQueue: MTLCommandQueue = self.device!.makeCommandQueue()
+    
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+        
+        guard let drawable = currentDrawable
+            , let descriptor = currentRenderPassDescriptor
+            else { return }
+        // We are not just clearing everytime, so keep with default
+        descriptor.colorAttachments[0].clearColor = .gray
+        let cmdBuffer = cmdQueue.makeCommandBuffer()
+        let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: descriptor)
+        
+        encoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
+        encoder.setRenderPipelineState(renderPipelineState)
+        encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
+        
+        encoder.endEncoding()
+        cmdBuffer.present(drawable)
+        cmdBuffer.commit()
+    }
+}
+
+extension MTLClearColor {
+    static let gray = MTLClearColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
 }

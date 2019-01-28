@@ -17,39 +17,37 @@ extension MTLClearColor {
 }
 
 class MetalView: MTKView {
-
     required init(coder: NSCoder) {
         super.init(coder: coder)
-
+        
         // Use the preferred GPU as the device for Metal
         device = MTLCreateSystemDefaultDevice()
     }
-
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
+        
         // MARK: Rendering
-        if let drawable = currentDrawable, // Something to be rendered.
-            let descriptor = currentRenderPassDescriptor // Generation information for the rendering pass.
-        {
-            // Keep the default texture.
-            descriptor.colorAttachments[0].texture = drawable.texture
-            // Rewrite each pixel at the end of the render pass.
-            descriptor.colorAttachments[0].loadAction = .clear
-            // Clear it with the bleen color
-            descriptor.colorAttachments[0].clearColor = .bleen
-
-            // Stores encoded commands; Transient, and only for single use.
-            let cmdBuffer = device!.makeCommandQueue().makeCommandBuffer()
-            // Encoder encodes graphics rendering commands for a single rendering pass.
-            let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: descriptor)
-            // Only a single command encoder can be active and append commands into a command buffer. Each command encoder must be ended before another command encoder can be created for use with the same command buffer.
-            encoder.endEncoding()
-            // Presents the drawable on to screen.
-            cmdBuffer.present(drawable)
-            // Once all encoding is completed, committing the cmdBuffer marks it as ready for execution by the GPU.
-            cmdBuffer.commit()
-        }
+        guard let drawable = currentDrawable // Something to be rendered.
+            , let descriptor = currentRenderPassDescriptor // Generation information for the rendering pass.
+            else { return }
+        // Keep the default texture.
+        descriptor.colorAttachments[0].texture = drawable.texture
+        // Rewrite all pixels at the end of the render pass.
+        descriptor.colorAttachments[0].loadAction = .clear
+        // Clear it with the "bleen" color
+        descriptor.colorAttachments[0].clearColor = .bleen
+        
+        // Stores encoded commands; Transient, and only for single use.
+        let cmdBuffer = device!.makeCommandQueue()!.makeCommandBuffer()!
+        // Encoder encodes graphics rendering commands for a single rendering pass.
+        let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: descriptor)!
+        // Only a single command encoder can be active and append commands into a command buffer.
+        // Each command encoder must be ended before another command encoder can be created for use with the same command buffer.
+        encoder.endEncoding()
+        // Presents the drawable on to screen.
+        cmdBuffer.present(drawable)
+        // Once all encoding is completed, committing the cmdBuffer marks it as ready for execution by the GPU.
+        cmdBuffer.commit()
     }
-    
 }
