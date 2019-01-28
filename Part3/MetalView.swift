@@ -33,14 +33,14 @@ class MetalView: MTKView {
             Vertex(position: [ 0.0,  1.0, 0.0, 1.0], color: [0, 0, 1, 1])
         ]
         let length = vertexData.count * MemoryLayout<Vertex>.size
-        return self.device!.makeBuffer(bytes: vertexData, length: length)
+        return self.device!.makeBuffer(bytes: vertexData, length: length)!
     }()
     
     // MARK: - Register Shaders
     
     /// Instructions for the rendering pipeline.
     lazy var renderPipelineState: MTLRenderPipelineState = {
-        let library = self.device!.newDefaultLibrary()!
+        let library = self.device!.makeDefaultLibrary()!
         let descriptor = MTLRenderPipelineDescriptor()
         descriptor.vertexFunction = library.makeFunction(name: "vertex_function")
         descriptor.fragmentFunction = library.makeFunction(name: "fragment_function")
@@ -55,7 +55,7 @@ class MetalView: MTKView {
         device = MTLCreateSystemDefaultDevice()
     }
     
-    lazy var cmdQueue: MTLCommandQueue = self.device!.makeCommandQueue()
+    lazy var cmdQueue: MTLCommandQueue = self.device!.makeCommandQueue()!
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -65,10 +65,10 @@ class MetalView: MTKView {
             else { return }
         // We are not just clearing everytime, so keep with default
         descriptor.colorAttachments[0].clearColor = .gray
-        let cmdBuffer = cmdQueue.makeCommandBuffer()
-        let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: descriptor)
+        let cmdBuffer = cmdQueue.makeCommandBuffer()!
+        let encoder = cmdBuffer.makeRenderCommandEncoder(descriptor: descriptor)!
         
-        encoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
+        encoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
         encoder.setRenderPipelineState(renderPipelineState)
         encoder.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: 3)
         
