@@ -23,6 +23,11 @@
 		52C4A1FB21FF576300E9F7D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52AC4BEF1EB27A7400AD7DCF /* Main.storyboard */; };
 		52C4A1FC21FF5CD000E9F7D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC4BD41EB2752000AD7DCF /* AppDelegate.swift */; };
 		52C4A1FE21FF73FC00E9F7D4 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 52C4A1FD21FF73FC00E9F7D4 /* Shaders.metal */; };
+		52C8EE9D22009893009A6ECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C8EE9A22009893009A6ECD /* Main.storyboard */; };
+		52C8EEA7220099DE009A6ECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C8EEA6220099DE009A6ECD /* ViewController.swift */; };
+		52C8EEAC220099E5009A6ECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52C8EEAA220099E5009A6ECD /* Main.storyboard */; };
+		52C8EEB222009A37009A6ECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC4BD41EB2752000AD7DCF /* AppDelegate.swift */; };
+		52C8EEB422009CE8009A6ECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C8EE9922009893009A6ECD /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +46,11 @@
 		52C4A1EA21FF545B00E9F7D4 /* Part5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Part5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52C4A1EE21FF545C00E9F7D4 /* MetalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		52C4A1FD21FF73FC00E9F7D4 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		52C8EE9922009893009A6ECD /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		52C8EE9B22009893009A6ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		52C8EEA2220099DE009A6ECD /* RayTracing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RayTracing.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52C8EEA6220099DE009A6ECD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		52C8EEAB220099E5009A6ECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52C8EE9F220099DE009A6ECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -106,10 +123,12 @@
 				52AC4BD41EB2752000AD7DCF /* AppDelegate.swift */,
 				52AC4BEF1EB27A7400AD7DCF /* Main.storyboard */,
 				52AC4BDD1EB2752100AD7DCF /* Info.plist */,
+				52C8EE9822009893009A6ECD /* MetalTryout */,
 				52AC4BE81EB27A7400AD7DCF /* Part1 */,
 				522BBF011EB2AA080038012B /* Part2 */,
 				5290864C1EB3CCB70037775A /* Part3 */,
 				52C4A1EB21FF545B00E9F7D4 /* Part5 */,
+				52C8EEA3220099DE009A6ECD /* RayTracing */,
 				52AC4BD21EB2752000AD7DCF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,6 +141,7 @@
 				522BBF001EB2AA080038012B /* Part2.app */,
 				5290864B1EB3CCB70037775A /* Part3.app */,
 				52C4A1EA21FF545B00E9F7D4 /* Part5.app */,
+				52C8EEA2220099DE009A6ECD /* RayTracing.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -141,6 +161,24 @@
 				52C4A1FD21FF73FC00E9F7D4 /* Shaders.metal */,
 			);
 			path = Part5;
+			sourceTree = "<group>";
+		};
+		52C8EE9822009893009A6ECD /* MetalTryout */ = {
+			isa = PBXGroup;
+			children = (
+				52C8EE9922009893009A6ECD /* ViewController.swift */,
+				52C8EE9A22009893009A6ECD /* Main.storyboard */,
+			);
+			path = MetalTryout;
+			sourceTree = "<group>";
+		};
+		52C8EEA3220099DE009A6ECD /* RayTracing */ = {
+			isa = PBXGroup;
+			children = (
+				52C8EEA6220099DE009A6ECD /* ViewController.swift */,
+				52C8EEAA220099E5009A6ECD /* Main.storyboard */,
+			);
+			path = RayTracing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +269,23 @@
 			productReference = 52C4A1EA21FF545B00E9F7D4 /* Part5.app */;
 			productType = "com.apple.product-type.application";
 		};
+		52C8EEA1220099DE009A6ECD /* RayTracing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52C8EEAF220099E5009A6ECD /* Build configuration list for PBXNativeTarget "RayTracing" */;
+			buildPhases = (
+				52C8EE9E220099DE009A6ECD /* Sources */,
+				52C8EE9F220099DE009A6ECD /* Frameworks */,
+				52C8EEA0220099DE009A6ECD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RayTracing;
+			productName = RayTracing;
+			productReference = 52C8EEA2220099DE009A6ECD /* RayTracing.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -270,6 +325,11 @@
 						DevelopmentTeam = KZ7D8X3PRK;
 						ProvisioningStyle = Automatic;
 					};
+					52C8EEA1220099DE009A6ECD = {
+						CreatedOnToolsVersion = 10.1;
+						DevelopmentTeam = KZ7D8X3PRK;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 52AC4BCC1EB2752000AD7DCF /* Build configuration list for PBXProject "MetalTryout" */;
@@ -290,6 +350,7 @@
 				522BBEFF1EB2AA080038012B /* Part2 */,
 				5290864A1EB3CCB70037775A /* Part3 */,
 				52C4A1E921FF545B00E9F7D4 /* Part5 */,
+				52C8EEA1220099DE009A6ECD /* RayTracing */,
 			);
 		};
 /* End PBXProject section */
@@ -315,6 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C8EE9D22009893009A6ECD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +393,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C4A1FB21FF576300E9F7D4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52C8EEA0220099DE009A6ECD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C8EEAC220099E5009A6ECD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C8EEB422009CE8009A6ECD /* ViewController.swift in Sources */,
 				52AC4BD51EB2752000AD7DCF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +455,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52C8EE9E220099DE009A6ECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C8EEB222009A37009A6ECD /* AppDelegate.swift in Sources */,
+				52C8EEA7220099DE009A6ECD /* ViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -391,6 +471,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				52AC4BF01EB27A7400AD7DCF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		52C8EE9A22009893009A6ECD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52C8EE9B22009893009A6ECD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		52C8EEAA220099E5009A6ECD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52C8EEAB220099E5009A6ECD /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -651,6 +747,47 @@
 			};
 			name = Release;
 		};
+		52C8EEB0220099E5009A6ECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wwitdc.apollozhu.RayTracing;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		52C8EEB1220099E5009A6ECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wwitdc.apollozhu.RayTracing;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -704,6 +841,15 @@
 			buildConfigurations = (
 				52C4A1F821FF548300E9F7D4 /* Debug */,
 				52C4A1F921FF548300E9F7D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52C8EEAF220099E5009A6ECD /* Build configuration list for PBXNativeTarget "RayTracing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52C8EEB0220099E5009A6ECD /* Debug */,
+				52C8EEB1220099E5009A6ECD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
