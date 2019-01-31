@@ -6,59 +6,111 @@
 //  Copyright © 2019 WWITDC. All rights reserved.
 //
 
-// Tutorial: http://metalkit.org/2016/03/21/ray-tracing-in-a-swift-playground.html
+// Tutorial:
+// http://metalkit.org/2016/03/21/ray-tracing-in-a-swift-playground.html
+// http://metalkit.org/2016/03/28/ray-tracing-in-a-swift-playground-part-2.html
 
 import Cocoa
 import simd
 
-// MARK: Coloring
+// MARK: - Scene
 
-extension Ray {
-    subscript(_ t: Float) -> Vector3 {
-        return origin + t * direction
-    }
+let world: Targets = {
+    var world = Targets()
+    world.append(Sphere(center: Vector3(0, -100.5, -1), radius: 100))
+    world.append(Sphere(center: Vector3(0, 0, -1), radius: 0.5))
+    return world
+}()
+
+struct Sphere: Target {
+    let center: Vector3
+    let radius: Float
     
-    func timeHittingSphere(centeredAt center: Vector3, withRadius radius: Float) -> Float {
-        let diff = origin - center
-        let a = dot(direction, direction)
-        let b = 2 * dot(diff, direction)
+    func willBeHit(byRay ray: Ray, between tMin: Float, and tMax: Float) -> HitTestResut {
+        let diff = ray.origin - center
+        let a = dot(ray.direction, ray.direction)
+        let b = 2 * dot(diff, ray.direction)
         let c = dot(diff, diff) - radius * radius
         let delta = b * b - 4 * a * c
-        if delta < 0 {
-            return -1
-        } else {
-            return (-b - sqrt(delta)) / (2 * a)
-        }
+        guard delta > 0 else { return .failure }
+        var t = (-b - sqrt(delta)) / (2 * a)
+        if t < tMin { t = (-b + sqrt(delta)) / (2 * a) }
+        guard tMin < t && t < tMax else { return .failure }
+        let p = ray[t]
+        return .success(t: t, p: p, normal: (p - center) / Vector3(radius))
     }
-    
-    var color: Vector3 {
-        let minusZ = Vector3(0, 0, -1)
-        var t = timeHittingSphere(centeredAt: minusZ, withRadius: 0.5)
-        if t > 0 {
-            let norm = (self[t] - minusZ).unitVector
-            return 0.5 * (norm + .one)
-        } else {
+}
+
+enum HitTestResut {
+    case success(t: Float, p: Vector3, normal: Vector3)
+    case failure
+}
+
+protocol Target {
+    func willBeHit(byRay ray: Ray, between tMin: Float, and tMax: Float) -> HitTestResut
+}
+
+typealias Targets = [Target]
+
+extension Array: Target where Element == Target {
+    func willBeHit(byRay ray: Ray, between tMin: Float, and tMax: Float) -> HitTestResut {
+        for element in reversed() {
+            let result = element.willBeHit(byRay: ray, between: tMin, and: tMax)
+            if case .success = result { return result }
+        }
+        return .failure
+    }
+}
+
+// MARK: - Coloring
+
+let backgroundColor = Vector3(0.5, 0.7, 1)
+
+extension Ray {
+    func color(_ object: Target)-> Vector3 {
+        switch object.willBeHit(byRay: self, between: 0.01, and: .infinity) {
+        case let .success(_, p, normal):
+            // MARK: Colored
+            // return 0.5 * (normal + .one)
+            // MARK: White Texture
+            let target = p + normal + .randomWithInUnitSphere()
+            return 0.5 * Ray(origin: p, direction: target - p).color(object)
+        case .failure:
             let unitDirection = direction.unitVector
-            t = 0.5 * (unitDirection.y + 1)
-            return (1 - t) * .one + t * Vector3(0.5, 0.7, 1)
+            let t = 0.5 * (unitDirection.y + 1)
+            return (1 - t) * .one + t * backgroundColor
         }
     }
 }
 
-let bottomLeft = Vector3(-2, 1, -1)
-let horizontal = Vector3(4, 0, 0)
-let vertical = Vector3(0, -2, 0)
-
 func colorForPixel(atI i: Float, j: Float, width: Float, height: Float) -> Pixel {
-    let u = i / width
-    let v = j / height
-    let ray = Ray(origin: .zero, direction: bottomLeft + u * horizontal + v * vertical)
-    let color = ray.color
+    var color = Vector3()
+    let sampleCount = 10
+    for _ in 0..<sampleCount {
+        let dX = (i + .random()) / width
+        let dY = (j + .random()) / height
+        let ray = Camera.ray(dX: dX, dY: dY)
+        color += ray.color(world)
+    }
+    color /= Vector3(Float(sampleCount))
     return Pixel(
         r: UInt8(color.x * 255),
         g: UInt8(color.y * 255),
         b: UInt8(color.z * 255)
     )
+}
+
+let a = 4 as Float
+let b = 2 as Float
+
+enum Camera {
+    static let start = Vector3(-a/2, b/2, -1)
+    static let vX = Vector3(a, 0, 0)
+    static let vY = Vector3(0, -b, 0)
+    static let origin = Vector3.zero
+    static func ray(dX: Float, dY: Float) -> Ray {
+        return Ray(origin: origin, direction: start + dX * vX + dY * vY)
+    }
 }
 
 // MARK: - Foundamentals
@@ -68,6 +120,12 @@ struct Pixel {
     let g: UInt8
     let b: UInt8
     let a: UInt8 = 255
+}
+
+extension Float {
+    static func random() -> Float {
+        return random(in: 0...1)
+    }
 }
 
 typealias Vector3 = float3
@@ -84,11 +142,25 @@ extension float3 {
     
     static let one = Vector3(1, 1, 1)
     static let zero = Vector3()
+    static func random() -> Vector3 {
+        return Vector3(.random(), .random(), .random())
+    }
+    static func randomWithInUnitSphere() -> Vector3 {
+        var result: Vector3
+        repeat {
+            result = 2 * .random() - .one
+        } while dot(result, result) >= 1
+        return result
+    }
 }
 
 struct Ray {
     let origin: Vector3
     let direction: Vector3
+    
+    subscript(_ t: Float) -> Vector3 {
+        return origin + t * direction
+    }
 }
 
 struct Image {
