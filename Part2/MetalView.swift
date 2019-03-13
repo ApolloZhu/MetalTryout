@@ -29,10 +29,11 @@ class MetalView: MTKView {
         // float4: 3 floats representing (x,y,z), and the other is 
         // the w axis, for a perspective system called homogeneous coordinates, 
         // describing the distance from the view point.
-        let vertexData: [Float] =
-            [  -1.0, -1.0, 0.0, 1.0, // bottom left
-                1.0, -1.0, 0.0, 1.0, // bottom right
-                0.0,  1.0, 0.0, 1.0] // top center
+        let vertexData: [Float] = [
+            -1.0, -1.0, 0.0, 1.0, // bottom left
+             1.0, -1.0, 0.0, 1.0, // bottom right
+             0.0,  1.0, 0.0, 1.0  // top center
+        ]
         let length = vertexData.count * MemoryLayout<Float>.size
         return self.device!.makeBuffer(bytes: vertexData, length: length)!
     }()
